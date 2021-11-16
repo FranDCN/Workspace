@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<!-- saved from url=(0132)https://aulavirtual33.educa.madrid.org/ies.juandelacierva.madrid/pluginfile.php/64604/mod_resource/content/18/demo-UD-4.html?embed=1 -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejemplos explicación de DOM</title>
+  <style type="text/css">
+    .rojo{
+      background-color: red;
+      text-align: center;
+    }
+    .borde{
+      border-style: dotted;      
+      width: 300px;      
+    }
+  </style>
+</head>
+<body>
+  
+  <div id="idParrafos">
+    
+    
+    <p> Parrafo DOM  tercero</p> 
+  <p>Parrafo DOM Dinámico</p><a href="http://www.google.es/" target="_blank">Enlace a google</a><p>Parrafo DOM Dinámico</p><a href="http://www.google.es/" target="_blank">Enlace a google</a></div>
+  
+  <form id="idForm" name="Formulario">      
+    <br>
+    <br>
+    <br>
+    <br>
+    <input type="button" value="Añadir Parrafo" onclick="anadirParrafoConContenido()">
+    <input type="button" value="Borrar Parrafo" onclick="elimarParrafo()">
+    <input type="button" value="Añadir Enlace" onclick="anadirEnlace()">
+    <input type="button" value="Añadir Clase" onclick="anadirClases()">
+    <input type="button" value="Eliminar Clase" onclick="eliminarClases()">
+  </form>
+
+
+<script>
+  /**
+  *  Añadir un párrafo(vacío y un comentario)
+  */
+  function anadirElemento(){
+    
+    // Creamos el párrafo y el comentario, aun no están añadidos al documento
+    let nuevop = document.createElement('p');    
+    let comentario = document.createComment('Nuevo comentario de código, para párrafos');
+
+    
+    let contenedor = document.getElementById("idParrafos")
+    
+    // añadimos el comentario y el párrafo al documento.
+    contenedor.appendChild(comentario)
+    contenedor.appendChild(nuevop)
+  } 
+
+  /**
+  *  Añadir un párrafo(con contenido)
+  */
+  function anadirParrafoConContenido(){
+    // Creamos el párrafo y contenido
+    let nuevop = document.createElement('p');    
+    let contenidop = document.createTextNode("Parrafo DOM Dinámico")
+
+    
+    let contenedor = document.getElementById("idParrafos")
+    
+    // añadimos el contenido al párrafo
+    nuevop.appendChild(contenidop)
+    //Añadimos el párrafo al documento
+    contenedor.appendChild(nuevop)
+  } 
+  /**
+   * Eliminar un elemento, indicando las dos posibilidades para eliminar
+   */
+  function elimarParrafo(){
+    // Buscamos el elemento a borrar 
+    let parrafo=document.querySelector("#idParrafos p")
+    if ( parrafo != null ){
+      // [Opcion 1] -> Borramos el elemento, a partir del padre
+      //parrafo.parentElement.removeChild(parrafo);
+
+      // [Opcion 2] -> Borrarmos el elemento(con childNode)
+      parrafo.remove()  
+    }else{
+      alert("No te quedan más párrafos!!!!")
+    }
+    
+  }  
+
+  /**
+  * Añadir un enlace a la página, especificando los atributos href y targer  
+  */
+  function anadirEnlace(){
+    // Creamos el enlace y añadimos contenido
+    let nuevoEnlace = document.createElement('a');    
+    let contenidoEnlace = document.createTextNode("Enlace a google")
+    nuevoEnlace.appendChild(contenidoEnlace)
+
+    //Creamos el enlace y añadimos atributo href
+    if(nuevoEnlace.hasAttribute('href') == false){
+      nuevoEnlace.setAttribute('href','http://www.google.es')
+    }
+    //Creamos el enlace y añadimos atributo target
+    if(nuevoEnlace.hasAttribute('target') == false){
+      nuevoEnlace.setAttribute('target','_blank')
+    }
+   
+    let contenedor = document.getElementById("idParrafos")
+    //Añadimos el enlace al documento
+    contenedor.appendChild(nuevoEnlace)
+
+  }
+
+  /**
+   * Recuperar un párrafo y añadir clases   
+   */
+  function anadirClases(){
+    let parrafo=document.querySelector("#idParrafos p")
+
+    parrafo.classList.add('borde')
+    parrafo.classList.add('rojo')
+  }
+
+  function eliminarClases(){
+    let parrafo=document.querySelector("#idParrafos p")
+
+    //if (parrafo.classList.contains('borde'))
+    //  parrafo.classList.remove('borde')
+    
+    if(parrafo.classList.contains('rojo'))
+      parrafo.classList.remove('rojo')
+  }
+
+</script> 
+</body></html>
