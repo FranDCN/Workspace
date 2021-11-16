@@ -10,9 +10,9 @@ let tamanoBarcos = new Map([
 ]);
 
 let numeroBarcos = new Map([
-    ["lanchas", 2],
-    ["fragatas", 4],
-    ["portaAviones", 3]
+    ["lanchas", 3],
+    ["fragatas", 3],
+    ["portaAviones", 2]
 ]);
 var tablero = new Array();
 
@@ -20,7 +20,6 @@ window.onload = function() {
 
     nuevoTablero(); //pone a cero
     //console.log(tablero);
-    pintaTablero();
     ubicaBarcos(numeroBarcos, tamanoBarcos);
     pintaTablero();
 
@@ -46,6 +45,19 @@ function ubicaBarcos(numeroBarcos, tamanoBarcos) {
     });
 }
 
+function amenizaje(cantidad, size) {
+    let vertical, x, y;
+    for (let i = 0; i < cantidad; i++) {
+        do {
+            vertical = esVertical();
+            x = posX(vertical, size);
+            y = posY(vertical, size);
+        }
+        while (!chocar(x, y, vertical, size));
+        lanzar(x, y, vertical, size);
+    }
+}
+
 function esVertical() {
     let r = parseInt(Math.random() * 2);
     if (r == 0) {
@@ -55,49 +67,84 @@ function esVertical() {
     }
 }
 
-function posX(sentido, size) {
-    if (sentido) {
+function posX(vertical, size) {
+    if (vertical) {
         return parseInt(Math.random() * 10);
     } else {
         return parseInt(Math.random() * (10 - size));
     }
 }
 
-function posY(sentido, size) {
-    if (sentido) {
+function posY(vertical, size) {
+    if (vertical) {
         return parseInt(Math.random() * (10 - size));
     } else {
         return parseInt(Math.random() * 10);
     }
 }
 
-function comprobar(x, y, sentido, size) {
-    //Hacer luego
+function chocar(x, y, vertical, size) {
+    if (vertical) {
+        for (let i = 0, a = y - 1; i < size + 2; i++, a++) {
+            if (a == -1 || a == 10) {
+
+            } else if (tablero[`id_${x}_${a}`] == 1) {
+                return false;
+            } else {
+                if (x == 9) {
+
+                } else {
+                    if (tablero[`id_${x+1}_${a}`] == 1) {
+                        return false;
+                    }
+                }
+                if (x == 0) {
+
+                } else {
+                    if (tablero[`id_${x-1}_${a}`] == 1) {
+                        return false;
+                    }
+                }
+            }
+        }
+    } else {
+        for (let i = 0, a = x - 1; i < size + 2; i++, a++) {
+            if (a == -1 || a == 10) {
+
+            } else if (tablero[`id_${a}_${y}`] == 1) {
+                return false;
+
+            } else {
+                if (y == 9) {
+
+                } else {
+                    if (tablero[`id_${a}_${y+1}`] == 1) {
+                        return false;
+                    }
+                }
+                if (y == 0) {
+
+                } else {
+                    if (tablero[`id_${a}_${y-1}`] == 1) {
+                        return false;
+                    }
+                }
+            }
+
+        }
+    }
     return true;
 }
 
-function lanzar(x, y, sentido, size) {
-    if (!sentido) {
+function lanzar(x, y, vertical, size) {
+    if (!vertical) {
         for (let i = 0; i < size; i++, x++) {
             tablero[`id_${x}_${y}`] = 1;
         }
-    } else if (sentido) {
+    } else if (vertical) {
         for (let i = 0; i < size; i++, y++) {
             tablero[`id_${x}_${y}`] = 1;
         }
-    }
-}
-
-function amenizaje(cantidad, size) {
-    let sentido, x, y;
-    for (let i = 0; i < cantidad; i++) {
-        do {
-            sentido = esVertical();
-            x = posX(sentido, size);
-            y = posY(sentido, size);
-        }
-        while (!comprobar(x, y, sentido, size));
-        lanzar(x, y, sentido, size);
     }
 }
 
@@ -114,7 +161,6 @@ function pintaTablero() {
                     document.getElementById(`id_${x}_${y}`).style.backgroundColor = "grey";
                     break;
             }
-
         }
     }
 }
