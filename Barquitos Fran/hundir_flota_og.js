@@ -10,7 +10,7 @@ let tamanoBarcos = new Map([
 ]);
 
 let numeroBarcos = new Map([
-    ["lanchas", 3],
+    ["lanchas", 4],
     ["fragatas", 3],
     ["portaAviones", 2]
 ]);
@@ -71,13 +71,13 @@ function posX(vertical, size) {
     if (vertical) {
         return parseInt(Math.random() * 10);
     } else {
-        return parseInt(Math.random() * (10 - size));
+        return parseInt(Math.random() * (10 - (size - 1)));
     }
 }
 
 function posY(vertical, size) {
     if (vertical) {
-        return parseInt(Math.random() * (10 - size));
+        return parseInt(Math.random() * (10 - (size - 1)));
     } else {
         return parseInt(Math.random() * 10);
     }
