@@ -1,9 +1,17 @@
 table {
-	width: 50%;
+	width: 300px;
 	height: 300px;
 }
 
 td{
+	width: 10%;
+	height: 10%;
+	text-align: center;
+}
 
-	padding: 8px;
+button{
+
+	margin:5px;
+	padding:5px;
+
 }

@@ -25,7 +25,11 @@ window.onload = function() {
 
 
 }
+function chuletario(){
 
+    nuevaVentana=window.open("chuleta.html","chuleta","width=800,height=500");
+       
+}
 
 function nuevoTablero() {
 
@@ -34,6 +38,22 @@ function nuevoTablero() {
         for (let j = 0; j < 10; j++) {
             let y = j;
             tablero[`id_${x}_${y}`] = 0;
+        }
+    }
+}
+function pintaTablero() {
+    for (let i = 0; i < 10; i++) {
+        let x = i
+        for (let j = 0; j < 10; j++) {
+            let y = j;
+            switch (tablero[`id_${x}_${y}`]) {
+                case 0:
+                    document.getElementById(`id_${x}_${y}`).style.backgroundColor = "lightblue";
+                    break;
+                case 1:
+                    document.getElementById(`id_${x}_${y}`).style.backgroundColor = "grey";
+                    break;
+            }
         }
     }
 }
@@ -144,23 +164,6 @@ function lanzar(x, y, vertical, size) {
     } else if (vertical) {
         for (let i = 0; i < size; i++, y++) {
             tablero[`id_${x}_${y}`] = 1;
-        }
-    }
-}
-
-function pintaTablero() {
-    for (let i = 0; i < 10; i++) {
-        let x = i
-        for (let j = 0; j < 10; j++) {
-            let y = j;
-            switch (tablero[`id_${x}_${y}`]) {
-                case 0:
-                    document.getElementById(`id_${x}_${y}`).style.backgroundColor = "lightblue";
-                    break;
-                case 1:
-                    document.getElementById(`id_${x}_${y}`).style.backgroundColor = "grey";
-                    break;
-            }
         }
     }
 }
