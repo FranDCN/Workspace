@@ -9,8 +9,8 @@
 </head>
 
 <body>
-    <button onclick="partidaNueva()">Partida Nueva</button>
-    <table border="1">
+    <button id="nueva" onclick="partidaNueva()">Partida Nueva</button>
+    <table id="tablero">
         <tr id="fila_0">
             <td id="id_0_0"></td>
             <td id="id_0_1"></td>
@@ -132,8 +132,11 @@
             <td id="id_9_9"></td>
         </tr>
     </table>
-    <button onclick="dVisual()">Mapa</button>
-    <button onclick="infoBarcos()">Informacion</button>
+    <button onclick="dVisual()" id="radar">Radar</button>
+    <button onclick="infoBarcos()" id="intel">Inteligencia</button>
+    <br>
+    <button onclick="verAutor()" id="autor">Ver Autor</button>
+    <button onclick="verJugador()" id="jugador">Ver Jugador</button>
 </body>
 
 </html>

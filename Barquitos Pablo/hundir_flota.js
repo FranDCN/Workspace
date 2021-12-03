@@ -44,7 +44,6 @@ function empieza(){
 
 //reinicia las array
    
-    
     barco=null;
     barco=[];
 
@@ -209,7 +208,7 @@ function demostracionVisual(){
     do{
         demo = window.open("demo.html","_blank","width=800,height=500");
 
-        
+
         demo.onload = function(){
             demo.partida();
 
@@ -217,38 +216,7 @@ function demostracionVisual(){
         }
 
     }    while(!demo);
-      
-
-
-
-
-
-
-
-
-
-
-
-
-    //investigar como parar onclick return false o algo asi
-
-     /*
-    console.log(a);
-
-    var a = window.open("demo.html","_blank","width=800,height=500");
-    a.addEventListener('load', function(){
-      a.partida();
-    }, true);
-
-    */
-
-
-
-
-
-
-
-
+  
 
 }
 
@@ -268,6 +236,36 @@ function delay(n){
 
 
 
+
+
+let autor = {
+
+    nombre :"",
+    apellidos : "",
+    edad : "",
+
+    informacionAutor : function(){
+
+        let info = `El autor es ${this.nombre} ${this.apellidos} de ${this.edad} años`
+    },
+
+    github : "",
+    lenguaje : "",
+    version : ""
+};
+
+let jugador = {
+
+
+    nombre : "jugador 1",
+    apellidos:"apellido1",
+    edad :"18",
+    id: 12345,
+
+    //resultados = {"aciertos":0,"fallos":0,"puntuacion":0}
+
+
+}
 
 
 

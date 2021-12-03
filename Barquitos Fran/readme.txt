@@ -1,0 +1,1 @@
+No me funcionan las ventamas en los navegadores, he estado usando el servidor del visual estudio code hasta ahora.
