@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ficha producto - imágenes</title>
+    <script src="script.js" defer></script>
+    <meta name="author" content="francesc ricart">
+    <style>
+        *{
+            box-sizing:border-box;
+            margin:0;
+            padding:0;
+        }
+        form{
+            width:200px;
+            padding:32px;
+            background-color:#ccc;
+            border:1px solid #000;
+            border-radius:5px;
+        }
+
+        [type="email"]{
+            width:100%;
+            padding:8px 16px;
+            border:#000;
+            border-radius:1px;
+        }
+
+        span.error{
+            color:#ff0000;
+            font-style: italic;
+            fonr.size: 6;
+        }
+    </style>
+</head>
+<body>    
+    <form id="idForm" action="https://google.es" target="_blank" name="formulario">
+    <input id="idEmail" type="email" name="email" placeholder="escribe tu email" required pattern="[^@\s]+@[^@\s]+\.[^@\s]+">
+    <span id="idEmailError" class="error"></span>
+
+    <!-- <input type="submit" name="enviar" value="enviar"> -->
+</form>
+</body>
+</html>

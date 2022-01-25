@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formularios en JavaScript</title>
+  <script type="text/javascript" src="./eventos-ini.js" defer></script>
+    
+</head>
+<body> 
+  <h1> UD 7 : Eventos y Formularios </h1>
+
+  <form id="idFormulario">
+      <!-- ÁREA de INPUT TEXT --> 
+      <label>Nombre <input type="text" id="idText" /></label>
+    <br>
+    <br>
+
+      <!-- ÁREA de RadioButton  : si , no , nsnc -->    
+      <label>Sí<input type="radio" value="si" name="pregunta" id="pregunta_si"/></label>
+      <label>No<input type="radio" value="no" name="pregunta" id="pregunta_no"/></label>
+      <label>no/nc<input type="radio" value="nsnc" name="pregunta" id="pregunta_nsnc"/></label>
+    <br>
+    <br>
+
+    <!-- ÁREA de checkbox  : condiciones y privacidad -->   
+    
+    <label>He leído y acepto las condiciones<input type="checkbox" value="condiciones" name="condiciones" id="condiciones"/> </label>
+    <label>He leído la política de privacidad<input type="checkbox" value="privacidad" name="privacidad" id="privacidad"/></label>
+    <br>
+    <br>
+
+    <!-- ÁREA de Select  : primer, segundo, tercer, cuarto -->   
+    <select id="lista" name="lista">
+      <option value="primer"> Primer valor </option>
+      <option value="segundo"> Segundo valo </option>
+      <option value="tercer"> Tercer valor </option>
+      <option value="cuarto"> Cuarto valor </option>
+     </select>
+
+    <br>
+    <br>
+    
+    <!-- ÁREA de input list + DataList : primer, segundo, tercer, cuarto --> 
+    
+    <input id= "inputList" list="lista2">
+    <datalist id="lista2" name="lista2">
+        <option value="primer"> Primer valor </option>
+        <option value="segundo"> Segundo valo </option>
+        <option value="tercer"> Tercer valor </option>
+        <option value="cuarto"> Cuarto valor </option>
+    </datalist>
+
+    <br>
+    <br>
+
+    <input id="idEnviar" type="button" value="Enviar"/>
+         
+  </form>
+</body>
+</html>

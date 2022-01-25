@@ -1,0 +1,63 @@
+<html>
+    <head>
+        <script src="scripts/ejer1.js" defer> </script> 
+        <script src="scripts/ejer2.js" defer> </script> 
+        <script src="scripts/ejer3.js" defer> </script>
+        <script src="scripts/ejer4.js" defer> </script>
+        <script src="scripts/ejerDNI.js" defer> </script>
+
+        <style>
+
+            #block{
+                position:relative;
+                width:120px;
+                height:120px;
+                border-style: solid;
+                border-width: 5px;
+                border-color: red;
+            }
+            #img2{
+            position:absolute;
+            top: 450px;
+            left: 250px;
+            z-index: 2;
+            }
+        </style>
+    </head>
+    <body>
+        
+        <button id="btn">PULSAME</button>
+
+        <hr>
+        <br>
+       
+
+
+        <h1>Posicion raton en tiempo real</h1>
+        <ul>
+            <li id = "posX"> </li>
+            <li id = "posY"></li>
+
+        </ul>
+        <br>
+        <br>
+
+        <div id="block">
+        </div>
+
+
+        <hr>
+        <br>
+        <br>
+
+            <img id = "img1" src="Imagenes/papeleraVacia.jpg">  
+
+            <img  id = "img2"src="Imagenes/bola.jpg">
+
+            <hr>
+            <br>
+            <br>
+        <label>DNI <input type="text" id="dni"><label>
+
+    </body>
+</html>

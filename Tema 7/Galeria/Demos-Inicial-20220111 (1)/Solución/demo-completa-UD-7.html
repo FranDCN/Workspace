@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programación Orientada a Objetos en JavaScript</title>
+  <script type="text/javascript" src="./eventos.js" defer></script>
+    
+</head>
+<body> 
+  <h1> UD 6 y 7 : Eventos y Formularios </h1>
+
+  <form id="idFormulario">
+    
+    <label for="idNombre"> Nombre </label>
+    <input type="text" id="idNombre"/>
+    
+    <br>
+    <br>
+
+    <label for="idPregunta_si"> Sí </label>
+    <input type="radio" value="si" name="pregunta" id="idPregunta_si"/> 
+    
+    <label for="idPregunta_no"> No </label>
+    <input type="radio" value="no" name="pregunta" id="idPregunta_no"/> 
+    
+    <label for="idPregunta_nsnc"> nsnc </label>
+    <input type="radio" value="nsnc" name="pregunta" id="idPregunta_nsnc"/>
+    
+    <br>
+    <br>
+
+    <label for="idCondiciones"> He leído y acepto las condiciones </label>
+    <input type="checkbox" value="condiciones" name="condiciones" id="idCondiciones"/> 
+    <label for="idPrivacidad"> He leído la política de privacidad </label>
+    <input type="checkbox" value="privacidad" name="privacidad" id="idPrivacidad"/> 
+    
+    <br>
+    <br>
+
+    <label for="idLista"> Lista de elementos Select </label>
+    <select id="idLista" name="listaSelect">
+      <option value="primer"> Primer valor  </option>
+      <option value="segundo"> Segundo valor </option>
+      <option value="tercer"> Tercer valor  </option>
+      <option value="cuarto"> Cuarto valor </option>
+    </select>
+
+    <br>
+    <br>
+
+    <label for="idInputDataList"> Lista de elementos DataList </label>
+    <input id= "idInputDataList"  list="idDataList">
+    <datalist  id="idDataList" name="listaDataList">
+      <option value="primer"> Primer valor  </option>
+      <option value="segundo">  Segundo valo </option>
+      <option value="tercer"> Tercer valor  </option>
+      <option value="cuarto"> Cuarto valor </option>
+    </datalist>
+
+    <br>
+    <br>
+
+    <input id="idEnviar" type="button" value="Enviar"/>
+         
+  </form>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<html>
+    <head>
+        <script src="scripts/formulario.js" defer > </script> 
+
+        
+    </head>
+    <body>
+        <form id="idForm">      <!--inputs dentro del label, si lo dejamos fuera usar un for al id del input-->
+            <label><input type="text" id="idNombre" name="nombre" value=""/> Nombre</label>
+
+            <br><br>
+
+            <label><input type="number" id="idNumero" name="numero"/> Numero</label>
+
+            <br><br>
+
+            <label for="idFecha">Fecha</label>
+            <input type="date" id="idFecha" name="trip-start" value="2022-12-21" min="201-01-01" max="2050-12-31"/>
+            
+            <br><br>
+
+            <label><input id="idHidden" name="prodId" type="hidden" value="xm234jq"/>NO ME VES</label>
+            
+            <br><br>
+            
+            <label><input type="password" id="idPassword"/> Contraseña</label>
+            
+            <br><br>
+
+            <label><textarea name="textarea" id="idArea" rows="10" cols="50">Write something here</textarea></label>
+
+            <br><br>
+            <label> Select <select id="idSelect" name="select">
+                <option value="value1">Value 1</option>
+                <option value="value2" selected>Value 2</option>
+                <option value="value3">Value 3</option>
+            </select> </label>
+            
+            <br><br>
+            
+            <label>Data list
+                <input list="idDatalist" name="myBrowser" /></label>
+                <datalist id="idDatalist">
+                    <option value="Chrome">
+                    <option value="Firefox">
+                    <option value="Internet Explorer">
+                </datalist>
+
+                <br><br>
+
+
+            <label><input type="radio" id="idR1" checked name="checkbox" value="uno"/>uno</label>
+
+            <label><input type="radio" id="idR2" name="checkbox" value="dos"/>dos</label>
+
+            <label><input type="radio" id="idR3" name="checkbox" value="tres"/>tres</label>
+            
+            <br><br>
+            
+            <label><input type="checkbox" id="idCbox1" checked value="first_checkbox"/> Este es mi primer checkbox</label><br>
+
+            <input type="checkbox" id="idCbox2" value="second_checkbox"/> <label for="idCbox2">Este es mi segundo checkbox</label>
+            <br><br>
+            <label><input type="color" value = "#000000"></label>
+            <br><br>
+            <button type="submit" id="idSubmit"> Submit </button>
+
+        </form>
+
+        <br><br>
+        <div id="Respuestas">
+
+        </div>
+
+
+
+    </body>
+</html>
