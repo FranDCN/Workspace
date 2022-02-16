@@ -84,7 +84,7 @@ class jugador extends persona {
         return super.toString()+text;
     }
     nuevoId(){
-        this._id = Math.random() *10000;
+        this._id = parseInt(Math.random() *10000);
     }
     valueOf() {
         return this.aciertos-this.fallos;
@@ -124,9 +124,6 @@ class autor extends persona{
     }
 }
 document.getElementsByTagName("body");
- 
-let Fran=generarAutor();
-let Pablo=generarJugador();
 
 let tiposBarcos = new Set(["lanchas", "fragatas", "portaAviones"]);
 
@@ -145,17 +142,31 @@ var flota = new Array();
 
 var tablero = new Array();
 
-function partidaNueva() {
+let Fran;
+let Jugador;
+//Formulario
+let formulario = document.getElementById("formulario");
+let boton =document.getElementById("idSubmit");
+boton.addEventListener("click",partidaNueva);
+
+function partidaNueva(evt) {
+    
     nuevoTablero(); //pone a cero
-    //console.log(tablero);
- 
-    completarInfoJugador();
+    
+    Fran=generarAutor();
+    
+    Jugador=generarJugador();
+    
+    //Eliminado para nueva fase;
+    //completarInfoJugador();
 
     flota = null;
     flota = new Array();
 
     ubicaBarcos(numeroBarcos, tamanoBarcos);
     pintaTablero();
+
+    evt.preventDefault();
 }
 function generarAutor(){
     let Fran=new autor("Fran","del Cerro", 24);
@@ -166,31 +177,23 @@ function generarAutor(){
 }
 
 function generarJugador(){
-    let Pablo=new jugador("Pablo","Sierra", 27, 0);
-    Pablo.aciertos= 10;
-    Pablo.fallos=7;
-    return Pablo;
-}
 
-function completarInfoJugador(){
-    let nombre = prompt("Introduce tu nombre");
-    let apellido = prompt("Introduce tu apellido");
-    let edad = prompt("Introduce tu edad");
-    let aciertos = prompt("¿Cuántos aciertos quieres?");
-    let fallos = prompt("¿Y Cuántos fallos?");
-    Pablo.nombre=nombre;
-    Pablo.apellido=apellido;
-    Pablo.edad=edad;
-    Pablo.aciertos=aciertos;
-    Pablo.fallos=fallos;
-    Pablo.nuevoId();
+    let nombre = formulario.elements["nombre"];
+    let apellido = formulario.elements["apellidos"];
+    let edad =formulario.elements["edad"];
+
+    let Jugador = new jugador(nombre,apellido, edad, 0);
+    Jugador.nuevoId();
+    Jugador.aciertos= 0;
+    Jugador.fallos=0;
+    return Jugador;
 }
 
 function verAutor(){
     alert(Fran.toString());
 }
 function verJugador(){
-    alert(Pablo.toString());
+    alert(Jugador.toString());
 }
 
 function dVisual() {

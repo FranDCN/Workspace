@@ -1,0 +1,10 @@
+chuleta no seguridad
+ejecutar en terminal:
+
+
+google-chrome --args --disable-web-security --user-data-dir="/home/agustin/Descargas/sin_seg/"
+
+
+Ruta ajax
+
+Escritorio/'Tema 8 Ajax'/'Tema 8 Ejercicios'/json# json-server --watch usuarios.json

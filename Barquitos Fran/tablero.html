@@ -4,12 +4,12 @@
 <head>
 
     <link rel="stylesheet" type="text/css" href="estilos.css" media="screen" />
-    <script src="hundir_flota.js"></script>
+    <script src="hundir_flota.js" defer></script>
 
 </head>
 
 <body>
-    <button id="nueva" onclick="partidaNueva()">Partida Nueva</button>
+    <button id="nueva" onclick="">Partida Nueva</button>
     <table id="tablero">
         <tr id="fila_0">
             <td id="id_0_0"></td>
@@ -137,6 +137,21 @@
     <br>
     <button onclick="verAutor()" id="autor">Ver Autor</button>
     <button onclick="verJugador()" id="jugador">Ver Jugador</button>
-</body>
+    
+    <form id="formulario">
 
+        <h1 class="cabecera">Formulario de registro</h1>
+
+        <label>Nombre</label><br>
+        <input class="input" id="nombre" type="text" placeholder="Ej: Juán"><br><br>
+
+        <label>Apellido</label><br>
+        <input class="input" id="apellidos" type="text" placeholder="Ej: García Vaquero"><br><br>
+
+        <label>Edad</label><br>
+        <input class="input" id="edad" type="Email" placeholder="Ejemplo@gmail.com"><br><br>
+        
+        <button id="idSubmit">Registrarse</button>
+    </form>
+</body>
 </html>

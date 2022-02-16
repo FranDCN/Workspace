@@ -1,0 +1,13 @@
+{
+    "usuarios": [{
+        "id": 1,
+        "nombre": "Miguel",
+        "apellido": "Indurain",
+        "dni":"11111111H"
+    }, {
+        "id": 2,
+       "nombre": "Javier",
+        "apellido": "Clemente",
+        "dni":"12345678ZH"
+    }]
+}

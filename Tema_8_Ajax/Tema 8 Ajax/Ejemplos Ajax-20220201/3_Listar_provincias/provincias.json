@@ -1,0 +1,64 @@
+{
+  "listadoPaises": {
+    "pais": [
+      {
+        "nombre": "España",
+        "capital": "Madrid",
+        "poblacion": 46560000,
+        "ciudadImportante": [
+          "Madrid",
+          "Barcelona",
+          "Valencia",
+          "Sevilla",
+          "Zaragoza",
+          "Málaga",
+          "Murcia"
+        ]
+      },
+      {
+        "nombre": "México",
+        "capital": "México D.F.",
+        "poblacion": 127500000,
+        "ciudadImportante": [
+          "México D.F.",
+          "Ecatepec",
+          "Guadalajara",
+          "Puebla",
+          "Juárez",
+          "Tijuana",
+          "León",
+          "Zapopan"
+        ]
+      },
+      {
+        "nombre": "Argentina",
+        "capital": "Buenos Aires",
+        "poblacion": 43850000,
+        "ciudadImportante": [
+          "Buenos Aires",
+          "Córdoba",
+          "Rosario",
+          "La Plata",
+          "Mar del Plata",
+          "San Miguel de Tucumán",
+          "Ciudad de Salta"
+        ]
+      },
+      {
+        "nombre": "Colombia",
+        "capital": "Bogotá",
+        "poblacion": 48650000,
+        "ciudadImportante": [
+          "Bogotá",
+          "Medellín",
+          "Cali",
+          "Barranquilla",
+          "Cartagena",
+          "Cúcuta",
+          "Soledad",
+          "Ibagué"
+        ]
+      }
+    ]
+  }
+}
