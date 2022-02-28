@@ -97,8 +97,12 @@ td:hover {
     font-size: 20px;
     color:white;
 }
+#juego{display:none}
 
 /*Formulario*/
+
+#registro{display:block}
+
 *{
     font-family: Arial;
     margin: 0px
@@ -121,9 +125,9 @@ form{
     border-radius: 5px;
     text-align: center;
     padding: 10px;
-    margin-bottom: 20px;
     margin-top: 10px;
 }
+
 .cabecera{
     margin-bottom: 35px;
 }
@@ -134,4 +138,11 @@ form{
     border-radius: 5px;
     font-size: 20px;
     color: white;
+}
+span{
+    color:rgb(255, 70, 70);
+    font-size: 20px;
+    font-style: oblique;
+    margin-bottom: 70px;
+    
 }

@@ -1,13 +1,11 @@
-// Código js
+// Clases
 class persona {
-
-    static _nUsuarios = 0;
     static _pMasAlta = 0;
     #_datos = "datos super delicados"
 
-    constructor(nombre, apellido, edad) {
+    constructor(nombre, apellidos, edad) {
         this._nombre = nombre;
-        this._apellido = apellido;
+        this._apellidos = apellidos;
         this._edad = edad;
     }
 
@@ -17,11 +15,11 @@ class persona {
     set nombre(nombre) {
         this._nombre = nombre;
     }
-    get apellido() {
-        return this._apellido;
+    get apellidos() {
+        return this._apellidos;
     }
-    set apellido(apellido) {
-        this._apellido = apellido;
+    set apellidos(apellidos) {
+        this._apellidos = apellidos;
     }
     get edad() {
         return this._edad;
@@ -33,7 +31,7 @@ class persona {
         persona._nUsuarios += 1;
     }
     toString() {
-        let text = `${this._nombre} ${this._apellido} tiene ${this._edad} años `;
+        let text = `${this._nombre} ${this._apellidos} tiene ${this._edad} años `;
         return text;
     }
     valueOf() {
@@ -50,8 +48,8 @@ class persona {
 }
 class jugador extends persona {
 
-    constructor(nombre, apellido, edad, id) {
-        super(nombre, apellido, edad);
+    constructor(nombre, apellidos, edad, id) {
+        super(nombre, apellidos, edad);
         this._id = id;
         this._aciertos = 0;
         this._fallos = 0;
@@ -74,14 +72,22 @@ class jugador extends persona {
     set fallos(fallos) {
         this._fallos = fallos;
     }
+    //Puntuacion mas alta
     static actualizarPuntuacion(puntuacion){
         if(persona._pMasAlta<puntuacion){
             persona._pMasAlta= puntuacion;
         }
     }
     toString(){
-        let text = `tiene el id ${this.id} y ${this.aciertos} aciertos y ${this.fallos} fallos`;
+        let text = `\nCon id ${this.id} | ${this.aciertos} aciertos y ${this.fallos} fallos | tu puntuacion máxima es de ${persona._pMasAlta}`;
         return super.toString()+text;
+    }
+    //Aumentar fallos y Aciertos
+    fallar(){
+        this._fallos++;
+    }
+    acertar(){
+        this._aciertos++;
     }
     nuevoId(){
         this._id = parseInt(Math.random() *10000);
@@ -91,8 +97,8 @@ class jugador extends persona {
     }
 }
 class autor extends persona{
-    constructor(nombre, apellido, edad) {
-        super(nombre, apellido, edad);
+    constructor(nombre, apellidos, edad) {
+        super(nombre, apellidos, edad);
         this._github= "";
         this._lenguaje= "";
         this._version= "";
@@ -116,15 +122,14 @@ class autor extends persona{
         this._version = version;
     }
     toString(){
-        let text = `con la cuenta ${this.github} y trabajando con ${this.lenguaje} en su version ${this.version}`;
+        let text = `\nCon la cuenta ${this.github} y trabajando con ${this.lenguaje} en su version ${this.version}`;
         return super.toString()+text;
     }
     static presentacion(){
         alert(`hola, soy el desarrollador y os aviso de que vais a sufrir`);
     }
 }
-document.getElementsByTagName("body");
-
+//Informacion de barcos
 let tiposBarcos = new Set(["lanchas", "fragatas", "portaAviones"]);
 
 let tamanoBarcos = new Map([
@@ -138,36 +143,69 @@ let numeroBarcos = new Map([
     ["fragatas", 3],
     ["lanchas", 4]
 ]);
+let cantidadBarcos;
 var flota = new Array();
-
+//var flota2;
 var tablero = new Array();
+
+//Variables
 
 let Fran;
 let Jugador;
-//Formulario
-let formulario = document.getElementById("formulario");
-let boton =document.getElementById("idSubmit");
-boton.addEventListener("click",partidaNueva);
+//de formulario
+let form = document.forms["formulario"];
+let submit = form.elements["idSubmit"];
+let inputs = form.elements;
 
-function partidaNueva(evt) {
-    
-    nuevoTablero(); //pone a cero
-    
-    Fran=generarAutor();
-    
-    Jugador=generarJugador();
-    
-    //Eliminado para nueva fase;
-    //completarInfoJugador();
+let nombreError = document.getElementById("idNombreError");
+let apeError = document.getElementById("idApellidosError");
+let edadError = document.getElementById("idEdadError");
 
-    flota = null;
-    flota = new Array();
-
-    ubicaBarcos(numeroBarcos, tamanoBarcos);
-    pintaTablero();
-
-    evt.preventDefault();
+submit.addEventListener("click",partidaNueva);
+//Resetear errores de formulari9o
+function limpiarError(){
+    nombreError.innerHTML= "";
+    apeError.innerHTML= "";
+    edadError.innerHTML= "";
+    inputs["nombre"].setCustomValidity("")
+    inputs["apellidos"].setCustomValidity("")
+    inputs["edad"].setCustomValidity("")
 }
+//Validacion
+let validacion;
+function validarForm(){
+    limpiarError(); 
+    validacion=true;
+
+    if(inputs["nombre"].checkValidity() == false){ 
+        validacion=false;
+        if(inputs["nombre"].validity.valueMissing){
+          inputs["nombre"].setCustomValidity("El nombre es obligatorio");
+        }  
+        nombreError.innerHTML = inputs["nombre"].validationMessage; 
+    }
+    if(inputs["apellidos"].checkValidity() == false){ 
+        validacion=false;
+        if(inputs["apellidos"].validity.valueMissing){
+          inputs["apellidos"].setCustomValidity("Los apellidos son obligatorios");
+        }  
+        apeError.innerHTML = inputs["apellidos"].validationMessage; 
+    }
+    if(inputs["edad"].checkValidity() == false){ 
+        validacion=false;
+        if(inputs["edad"].validity.valueMissing){
+          inputs["edad"].setCustomValidity("La edad es obligatoria");
+        }  
+        edadError.innerHTML = inputs["edad"].validationMessage; 
+    }else if(inputs["edad"].value<18){
+        validacion=false; 
+        edadError.innerHTML = "Debe ser usted mayor de edad";
+    }
+  
+   
+    return validacion;
+}
+//Me genero
 function generarAutor(){
     let Fran=new autor("Fran","del Cerro", 24);
     Fran.github="franciskis.github";
@@ -175,20 +213,139 @@ function generarAutor(){
     Fran.version=6.01;
     return Fran;
 }
-
+//Generar jugador
 function generarJugador(){
 
-    let nombre = formulario.elements["nombre"];
-    let apellido = formulario.elements["apellidos"];
-    let edad =formulario.elements["edad"];
+    let nombre = inputs["nombre"].value;
+    let apellidos = inputs["apellidos"].value;
+    let edad = inputs["edad"].value;  
 
-    let Jugador = new jugador(nombre,apellido, edad, 0);
+    let Jugador = new jugador(nombre,apellidos, edad, 0);
     Jugador.nuevoId();
     Jugador.aciertos= 0;
     Jugador.fallos=0;
     return Jugador;
 }
+//Generar partida nueva
+function partidaNueva(evt) {
+    if(validarForm()==true){
+        nuevoTablero(); 
+    
+        Fran=generarAutor();     
+        Jugador=generarJugador();
+        Jugador.nuevoId();  
 
+        flota = null;
+        flota2=null;
+        flota = new Array();
+        flota2 = new Array();
+
+        ubicaBarcos(numeroBarcos, tamanoBarcos);
+        pintaTablero();
+
+        ajustarMira();
+
+        document.getElementById("registro").style.display = "none";
+        document.getElementById("juego").style.display = "block";
+    
+    }else{
+        
+    }
+
+    
+    evt.preventDefault();  
+}
+//Boton de reiniciar partida
+document.getElementById("nueva").addEventListener("click",reiniciarPartida);
+
+function reiniciarPartida(evt){
+    nuevoTablero(); 
+    //Crear nuevo array de flota
+    flota = null;
+    flota2=null;
+    flota = new Array();
+    flota2 = new Array();
+
+    Jugador.aciertos=0;
+    Jugador.fallos=0; 
+
+    ubicaBarcos(numeroBarcos, tamanoBarcos);
+    pintaTablero();
+    evt.preventDefault();
+}
+
+
+//Añadir add events listener
+function ajustarMira(){
+    let casillas = document.getElementsByTagName("td");
+    for(let i=0; i<casillas.length;i++){
+        casillas[i].addEventListener("click",abrirFuego)
+    }
+}
+
+//Cambiar los valores de array del mapa
+function abrirFuego(){
+    let x=parseInt(this.id.charAt(3));
+    let y= parseInt(this.id.charAt(5));
+    
+    
+    switch (tablero[`id_${x}_${y}`]) {
+        case 0:
+            tablero[`id_${x}_${y}`] = 3;
+            Jugador.fallar();
+            break;
+        case 1:
+            tablero[`id_${x}_${y}`] = 2;
+            Jugador.acertar();
+            comprobarHundido(`id_${x}_${y}`);
+            break;
+        case 2:
+            Jugador.fallar();
+            break;
+        case 3:
+            Jugador.fallar();
+            break;
+    }
+    pintaTablero();
+    if(heGanado()){
+        jugador.actualizarPuntuacion(Jugador.aciertos-Jugador.fallos);
+        alert(`Has hundido la flota enemiga`);
+    }
+    
+}
+//Comprobar si el estado de todas las partes de un barco están hundidas
+/*function comprobarHundido(){
+    let estado
+    for(let i=0; i<cantidadBarcos;i++){
+        estado=true;
+        for(let j=0; j<flota2[i].length;j++){
+            if(flota2[i][j]!=2){
+                estado=false;
+            }
+        }
+        if(estado==true){
+            for(let j=0; j<flota2[i].length;j++){         
+                tablero[flota2[i][j]]=4;        
+            }
+        }
+    }
+}*/
+
+//Comprobar si queda barco vivo
+function heGanado(){
+    let victoria = true;
+    for (let i = 0; i < 10; i++) {
+        let x = i
+        for (let j = 0; j < 10; j++) {
+            let y = j;
+            if(tablero[`id_${x}_${y}`] == 1){
+                victoria = false;
+            }
+        }
+    }
+    return victoria;
+}
+//Botones de ver informacion 
 function verAutor(){
     alert(Fran.toString());
 }
@@ -256,10 +413,9 @@ function infoBarcos() {
             }
             info.document.getElementById("informe").appendChild(table);
         }
-        //flota!!!
-
 }
 
+//Generar un tablero vacío
 function nuevoTablero() {
 
     for (let i = 0; i < 10; i++) {
@@ -270,7 +426,7 @@ function nuevoTablero() {
         }
     }
 }
-
+//Dibuja mapa en ventana
 function pintaMapa() {
     for (let i = 0; i < 10; i++) {
         let y = i
@@ -284,13 +440,21 @@ function pintaMapa() {
                     case 1:
                         document.getElementById(`id_${x}_${y}`).style.backgroundColor = "black";
                         break;
-
+                    case 2:
+                        document.getElementById(`id_${x}_${y}`).style.backgroundColor = "red";
+                        break;
+                    case 3:
+                        document.getElementById(`id_${x}_${y}`).style.backgroundColor = "darkblue";
+                        break;
+                    case 4:
+                        document.getElementById(`id_${x}_${y}`).style.backgroundColor = "darkgreen";
+                        break;
                 }
             }
         }, (y + 1) * 1000);
     }
 }
-
+//Dibuja el tablero normal
 function pintaTablero() {
     for (let i = 0; i < 10; i++) {
         let x = i
@@ -303,18 +467,30 @@ function pintaTablero() {
                 case 1:
                     document.getElementById(`id_${x}_${y}`).style.backgroundColor = "aqua";
                     break;
+                case 2:
+                    document.getElementById(`id_${x}_${y}`).style.backgroundColor = "red";
+                    break;
+                case 3:
+                    document.getElementById(`id_${x}_${y}`).style.backgroundColor = "darkblue";
+                    break;
+                case 4:
+                    document.getElementById(`id_${x}_${y}`).style.backgroundColor = "darkgreen";
+                    break;
             }
         }
     }
 }
-
+//De aquí al final colocar los barcos
+//Lanza cada brco uno a uno
 function ubicaBarcos(numeroBarcos, tamanoBarcos) {
+    //cantidadBarcos=0;
     numeroBarcos.forEach(function(cantidad, tipo) {
+        //cantidadBarcos += cantidad;
         let size = tamanoBarcos.get(tipo);
         amenizaje(cantidad, size, tipo);
     });
 }
-
+//Elige si es vertical o no y su posicion inicial
 function amenizaje(cantidad, size, tipo) {
     let vertical, x, y;
     for (let i = 0; i < cantidad; i++) {
@@ -327,7 +503,7 @@ function amenizaje(cantidad, size, tipo) {
         lanzar(x, y, vertical, size, tipo);
     }
 }
-
+//Devuelve de manera aleatoria si es vertical u horizontal
 function esVertical() {
     let r = parseInt(Math.random() * 2);
     if (r == 0) {
@@ -336,7 +512,7 @@ function esVertical() {
         return true;
     }
 }
-
+//Elige la casilla x, y si es gorizontal se asegura de que tenga suficente espacio
 function posX(vertical, size) {
     if (vertical) {
         return parseInt(Math.random() * 10);
@@ -344,7 +520,7 @@ function posX(vertical, size) {
         return parseInt(Math.random() * (10 - (size - 1)));
     }
 }
-
+//Elige la casilla y, y si es vertical se asegura de que haya espacio 
 function posY(vertical, size) {
     if (vertical) {
         return parseInt(Math.random() * (10 - (size - 1)));
@@ -352,7 +528,7 @@ function posY(vertical, size) {
         return parseInt(Math.random() * 10);
     }
 }
-
+//Se comprueba si se estan usando algunas de las casillas necesrias o si chocan los barcos
 function chocar(x, y, vertical, size) {
     if (vertical) {
         for (let i = 0, a = y - 1; i < size + 2; i++, a++) {
@@ -400,15 +576,17 @@ function chocar(x, y, vertical, size) {
                     }
                 }
             }
-
         }
     }
     return true;
 }
 
 function lanzar(x, y, vertical, size, tipo) {
+    //Se usa el array de flota
     barco = null;
-    barco = [];
+    //barco2=null
+    barco = []; 
+    //barco2=[];
     barco.push(tipo);
     barco.push(size);
     barco.push(`${y}${x}`);
@@ -417,15 +595,19 @@ function lanzar(x, y, vertical, size, tipo) {
     } else {
         barco.push("Horizontal");
     }
+    //Se rellenan el resto de casilla del barco
     if (!vertical) {
         for (let i = 0; i < size; i++, x++) {
             tablero[`id_${x}_${y}`] = 1;
+            //barco2.push(`id_${x}_${y}`)
         }
     } else if (vertical) {
         for (let i = 0; i < size; i++, y++) {
             tablero[`id_${x}_${y}`] = 1;
+            //barco2.push(`id_${x}_${y}`)
         }
     }
     flota.push(barco);
+    //flota2.push(barco2);
 }
 
